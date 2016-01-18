@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Misakai.Storage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,27 @@ namespace Demo
     class Program
     {
         static readonly DemoContext Context = new DemoContext();
+        static readonly ActorProvider Actors = new ActorProvider();
 
         static void Main(string[] args)
         {
+     
 
-            foreach(var actor in Context.Actors)
+            // Transaction
+            using (var uow = EntityContext.Acquire())
             {
-                Console.WriteLine("Actor: " + actor.Name);
+                // Using the provider for queries
+                var result = Actors.GetByKey(7);
+                if (result.Success)
+                {
+                    // Change something
+                    var actor = result.Value;
+                    actor.Bio = "Hello";
+
+                    // Commit
+                    uow.SaveChanges();
+                }
+
             }
 
             Console.ReadKey();
