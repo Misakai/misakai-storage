@@ -15,7 +15,6 @@ namespace Demo
             
         }
         
-
         /// <summary>
         /// Gets an account by the OAuth id.
         /// </summary>

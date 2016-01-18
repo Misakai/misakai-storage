@@ -10,7 +10,6 @@ namespace Demo
     [Table("dbo.actor")]
     public class Actor : Entity
     {
-        #region Properties
         /// <summary>
         /// Gets or sets the name of the person/organization.
         /// </summary>
@@ -100,7 +99,6 @@ namespace Demo
             get;
             set;
         }
-        #endregion
     }
 
 }
